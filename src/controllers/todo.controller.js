@@ -27,7 +27,7 @@ router.post('',authenticate, async (req,res)=>{
 router.get('/:id',authenticate, async (req,res)=>{
     try {
         let todo = Todo.findById(req.params.id).lean().exec();
-        if(req.userId = todo.userId){
+        if(req.userId == todo.userId){
             return res.status(200).send(todo);
         }
         else{
@@ -42,7 +42,7 @@ router.patch('/:id',authenticate, async (req,res)=>{
 
     try {
         let todo = Todo.findById(req.params.id).lean().exec();
-        if(req.userId = todo.userId){
+        if(req.userId == todo.userId){
             todo = Todo.findByIdAndUpdate(req.params.id,req.body,{new:true});
             return res.status(200).send(todo);
         }
@@ -58,7 +58,7 @@ router.delete('/:id',authenticate, async (req,res)=>{
 
     try {
         let todo = Todo.findById(req.params.id).lean().exec();
-        if(req.userId = todo.userId){
+        if(req.userId == todo.userId){
             todo = Todo.findByIdAndDelete(req.params.id);
             return res.status(200).send(todo);
         }
