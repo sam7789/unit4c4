@@ -3,11 +3,11 @@ const connect = require('./configs/db');
 const app = express();
 const {register,login} = require('./controllers/auth.controller');
 const todoContoller = require('./controllers/todo.controller');
-
+app.use(express.json());
 
 app.use('/register',register);
 app.use('/login',login);
-app.use('./todos',todoContoller);
+app.use('/todos',todoContoller);
 
 
 

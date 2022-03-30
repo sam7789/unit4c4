@@ -26,15 +26,16 @@ const authenticate = async(req,res,next)=>{
     }
     const token = req.headers.authorization.trim().split(" ")[1];
 
-    var decoded;
+    let decoded;
     try {
         decoded = await verifyToken(token);
     } catch (error) {
         console.log(error);
         return res.status(400).send({message: "Authorization Token not found or incorect"});
     }
-    console.log(decoded);
-    req.userID = decoded.user._id;
+    
+    req.userId = decoded.user._id;
+    console.log(decoded.user._id);
     return next();
 }
 
